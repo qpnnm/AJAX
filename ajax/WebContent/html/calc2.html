@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="test()">test</button>
+	<div id="rDiv"></div>
+	<script>
+		function test() {
+			var xhr = new XMLHttpRequest();
+			var params = {
+				num1 : '10',
+				num2 : '20',
+				op : '+'
+			}
+			var url = '/calc2?params='+ encodeURIComponent(JSON.stringify(params));
+			xhr.open('GET', url);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					alert(xhr.responseText);
+				}
+
+			}
+			xhr.send();
+		}
+	</script>
+</body>
+</html>

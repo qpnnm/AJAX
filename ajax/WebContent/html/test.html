@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	num1:
+	<input type="number" id="num1"> num2:
+	<input type="number" id="num2">
+	<button onclick="getTestList()">Calculate</button>
+
+	<script>
+		function getTestList() {
+
+			var xhr = new XMLHttpRequest();
+			var num1 = document.querySelector("num1").value;
+			var num1 = document.querySelector("num2").value;
+
+			xhr.open('GET', '/test?list=true&num1=' + num1 + '&num2' + num2);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					alert(xhr.responseText);
+				}
+			}
+			xhr.send();
+		}
+	</script>
+
+
+</body>
+</html>
