@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserInfoDAO {
-	int insertUser(Map<String, Object> uMap);
+	int insertUserInfo(Map<String, Object> ui);
 
-	int deleteUser(Map<String, Object> uMap);
+	int deleteUserInfo(Map<String, Object> ui);
 
-	int updateUser(Map<String, Object> uMap);
+	int updateUserInfo(Map<String, Object> ui);
 
-	Map<String, Object> selectUser(Map<String, Object> uMap);
+	Map<String, Object> selectUserInfo(Map<String, Object> ui);
 
-	List<Map<String, Object>> selectUserList(Map<String, Object> uMap);
+	Map<String, Object> selectUserInfoByUiId(String uiId);
+
+	List<Map<String, Object>> selectListUserInfo(Map<String, Object> ui);
 }

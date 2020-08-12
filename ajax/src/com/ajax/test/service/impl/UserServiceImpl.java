@@ -3,9 +3,12 @@ package com.ajax.test.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ajax.test.dao.UserInfoDAO;
+import com.ajax.test.dao.impl.UserInfoDAOImpl;
 import com.ajax.test.service.UserService;
 
 public class UserServiceImpl implements UserService {
+	private UserInfoDAO uiDao = new UserInfoDAOImpl();
 
 	public Map<String, String> doLogin(Map<String, String> user) {
 		Map<String, String> rMap = new HashMap<>();
@@ -17,6 +20,20 @@ public class UserServiceImpl implements UserService {
 				rMap.put("result", "success");
 				rMap.put("msg", "완료");
 			}
+		}
+		return rMap;
+	}
+
+	@Override
+	public Map<String, Object> joinUserInfo(Map<String, Object> user) {
+		int result = uiDao.insertUserInfo(user);
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("result", result);
+		rMap.put("msg", "가입실패");
+
+		if (result == 1) {
+			rMap.put("msg", "가입성공");
+			rMap.put("url", "/views/login");
 		}
 		return rMap;
 	}
