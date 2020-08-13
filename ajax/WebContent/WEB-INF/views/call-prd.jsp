@@ -13,14 +13,14 @@
 <body>
 	<%
 		Connection con = InitServlet.getConnection();
-	String sql = "{call prd_increase_sal(?,?)}";
+	String sql = "{call increase_salary(?,?)}";
 	try {
 		CallableStatement cs = con.prepareCall(sql);
-		cs.setInt(1, 1);
-		cs.setDouble(2, 1.2);
+		cs.setString(1, "dragon");
+		cs.setFloat(2,1.05F);
 		int result = cs.executeUpdate();
 		out.println("결과 :" + result + "<br>");
-		out.println("1번 사원의 임금이 20 % 인상되었습니다.");
+		out.println("dragon의 임금이 0.05  인상되었습니다.");
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {

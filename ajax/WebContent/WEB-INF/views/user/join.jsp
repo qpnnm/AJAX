@@ -8,7 +8,13 @@
 </head>
 <body>
 <script>
+var isChecked=false;
+
 function checkValue(){
+	if(!isChecked){
+		alert('중복확인');
+		return false;
+	}
 	var uiId = document.querySelector('#ui_id');
 	if(uiId.value.trim().length<4)	{
 		alert('Check ID');
@@ -46,10 +52,29 @@ function checkValue(){
 		return false;
 	}
 }
+function checkID(){
+	var id = document.querySelector('#ui_id').value;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/user/checkid?ui_id='+ id);
+	xhr.onreadystatechange =function(){
+		if(xhr.readyState==4){
+         if(xhr.status==200){
+        	 var res = JSON.parse(xhr.responseText);
+        	 alert(res.msg);
+        	 if(res.result=='true'){
+        		 isChecked=true;
+        	 }else if(res.result=='false'){
+        		 isChecked=false;
+        	 }
+}
+		}
+	}
+xhr.send();
+}
 
 </script>
 	<form action="/user/join" method="post" onsubmit="return checkValue()">
-ID : <input type="text" name="ui_id" id="ui_id"><button>중복확인</button>	<br>
+ID : <input type="text" name="ui_id" id="ui_id" onchange='isChecked=false'><button type="button" onclick="checkID()">중복확인</button>	<br>
 PASSWORD : <input type="password" name="ui_password" id="ui_password"><br>
 NAME : <input type= "text" name="ui_name" id="ui_name"><br>
 AGE : <input type= "text" name="ui_age" id="ui_age"><br>

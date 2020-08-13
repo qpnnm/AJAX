@@ -73,13 +73,13 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		Connection conn = Conn.open();
 		PreparedStatement ps = null;
 		try {
-			sql = "update set ui_name=?,ui_age=?,ui_birth=?,ui_PASSWORD=?,ui_phone=?,ui_email=?,ui_nickname=? from user_info";
+			sql = "update set ui_name=?,ui_age=?,ui_birth=?,ui_password=?,ui_phone=?,ui_email=?,ui_nickname=? from user_info";
 			sql += "where ui_num=?";
 			ps = conn.prepareStatement(sql);
 			ps.setObject(1, ui.get("ui_name"));
 			ps.setObject(2, ui.get("ui_age"));
 			ps.setObject(3, ui.get("ui_birth"));
-			ps.setObject(4, ui.get("ui_PASSWORD"));
+			ps.setObject(4, ui.get("ui_password"));
 			ps.setObject(5, ui.get("ui_phone"));
 			ps.setObject(6, ui.get("ui_email"));
 			ps.setObject(7, ui.get("ui_nickname"));
@@ -185,8 +185,8 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 				map.put("ui_email", rs.getString("ui_email"));
 				map.put("ui_credat", rs.getString("ui_credat"));
 				map.put("ui_nickname", rs.getString("ui_nickname"));
+				return map;
 			}
-			return map;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
