@@ -50,10 +50,11 @@ public class UserServlet extends HttpServlet {
 
 			}
 			Map<String, String> pMap = g.fromJson(sb.toString(), Map.class);
-			Map<String, String> rMap = us.doLogin(pMap);
+			Map<String,Object> rMap = us.doLogin(pMap);
 			if ("success".equals(rMap.get("result"))) {
 				HttpSession session = request.getSession();
-				session.setAttribute("id", pMap.get("id"));
+				session.setAttribute("user", rMap.get("user"));
+				rMap.remove("user");
 			}
 			response.getWriter().append(g.toJson(rMap));
 		} else if ("logout".equals(cmd)) {

@@ -1,0 +1,13 @@
+Java
+alt shift d+j F5 inside
+ctrl shift i  value
+F6   nextLine
+F7 Exit
+F8 Jump
+
+ request  = ear
+ response = mouth
+ when request has been done  ,   response  also has been done.
+ 1 req , 1 res
+ biz logic  =  middle term between req & res
+ 

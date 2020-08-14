@@ -137,7 +137,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		ResultSet rs = null;
 
 		try {
-			sql = "select *from user_info";
+			sql = "select * from user_info";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -171,7 +171,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		Map<String, Object> map = new HashMap<>();
 
 		try {
-			sql = "select *from user_info where ui_id=?";
+			sql = "select * from user_info where ui_id=?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, uiId);
 			rs = ps.executeQuery();
@@ -181,6 +181,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 				map.put("ui_age", rs.getString("ui_age"));
 				map.put("ui_birth", rs.getString("ui_birth"));
 				map.put("ui_id", rs.getString("ui_id"));
+				map.put("ui_password", rs.getString("ui_password"));
 				map.put("ui_phone", rs.getString("ui_phone"));
 				map.put("ui_email", rs.getString("ui_email"));
 				map.put("ui_credat", rs.getString("ui_credat"));
@@ -194,6 +195,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		}
 		return null;
 	}
+
 	public static void main(String[] args) {
 		InitServlet is = new InitServlet();
 		is.init();
